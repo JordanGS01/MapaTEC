@@ -16,9 +16,9 @@ app.listen(3300, () => {
 client.connect();
 
 //Requests a la base de datos
-app.get('/edificios', (req, res) => {
+app.get('/aceras', (req, res) => {
     
-    const q = 'SELECT id, ST_AsSVG(geom) as aceras_svg, descipcion, "Techado", tipo FROM tec.aceras';
+    const q = 'SELECT id, ST_AsSVG(geom) as svg, descipcion, "Techado", tipo as titulo FROM tec.aceras';
     
     client.query(q, (err, result) => {
         if(!err){
@@ -31,7 +31,7 @@ app.get('/edificios', (req, res) => {
 
 app.get('/zonas_verdes', (req, res) => {
 
-    const q = "SELECT id, ST_AsSVG(geom) as zonas_verdes_svg FROM tec.zonas_verdes";
+    const q = "SELECT id, ST_AsSVG(geom) as svg, nombre as titulo FROM tec.zonas_verdes";
 
     client.query(q, (err, result) => {
         if(!err){
@@ -44,7 +44,7 @@ app.get('/zonas_verdes', (req, res) => {
 
 app.get('/vialidad', (req, res) => {
 
-    const q = "SELECT id, ST_AsSVG(geom) as vialidad_svg, tipo FROM tec.vialidad";
+    const q = "SELECT id, ST_AsSVG(geom) as svg, tipo, nombre as titulo FROM tec.vialidad";
 
     client.query(q, (err, result) => {
         if(!err){
@@ -57,7 +57,7 @@ app.get('/vialidad', (req, res) => {
 
 app.get('/edificios', (req, res) => {
 
-    const q = "SELECT id, ST_AsSVG(geom) as edificios_svg, nombre, niveles FROM tec.edificios";
+    const q = "SELECT id, ST_AsSVG(geom) as svg, nombre as titulo, niveles FROM tec.edificios";
 
     client.query(q, (err, result) => {
         if(!err){
