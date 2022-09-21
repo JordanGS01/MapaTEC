@@ -1,11 +1,11 @@
 import './App.css';
-import { Prueba } from './components/Prueba';
+import { MapaSVG } from './components/MapaSVG';
 
 function App() {
   
   return (
     <div className='AppContainer'>
-      <Prueba />
+      <MapaSVG />
     </div>
   );
 }
