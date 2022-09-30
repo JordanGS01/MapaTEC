@@ -1,8 +1,23 @@
+
 import { useFetch } from "../hooks/useFetch"
+
+import { useContext } from "react"
+import { CapasContext } from '../context/CapasContext'
+
 import { Figure } from "./Figure";
 
 
 export const MapaSVG = () => {
+
+    const { capas, onCheckboxChange } = useContext( CapasContext );
+
+    //Extraemos la referencia la variable booleana de cada capa y las renombramos
+    const { 
+        edificios: capaEdificiosBool, 
+        zonas_verdes: capaZonasVerdesBool, 
+        aceras: capaAcerasBool, 
+        vialidad: capaVialidadBool 
+    } = capas;
 
     const { data:edificios } = useFetch('http://localhost:3300/edificios');
     const { data:aceras } = useFetch('http://localhost:3300/aceras');
@@ -16,12 +31,12 @@ export const MapaSVG = () => {
             id="Contenedor-MapaTec"
             width={"70%"} 
             height={"70%"}
-            viewBox={"443574.2675188603 -1146507.6491083507 970.3827371736406 968.9811655969825"}
+            viewBox={"443480 -1146600 1200 1200"}
         >
-            <Figure data={edificios} fill="lightblue"/>
-            <Figure data={aceras} fill="grey"/>
-            <Figure data={vialidad} fill="black"/>
-            <Figure data={zonasVerdes} fill="green"/>
+            <Figure data={edificios} fill="lightblue" key={'edificios'} active={capaEdificiosBool}/>
+            <Figure data={aceras} fill="grey" key={'aceras'} active={capaAcerasBool}/>
+            <Figure data={vialidad} fill="black" key={'vialidad'} active={capaVialidadBool}/>
+            <Figure data={zonasVerdes} fill="green" key={'zonas_verdes'} active={capaZonasVerdesBool}/>
 
         </svg>
     )

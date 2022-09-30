@@ -1,6 +1,8 @@
 .App-SVG{
   width: 100%;
   height: 100%;
+  border-style: solid;
+  border-color: black;
 }
 
 .AppContainer{
@@ -8,4 +10,14 @@
   border-style: solid;
   border-color: red;
   
+  display: flex;
+}
+
+.Capas-Container{
+  display: flex;
+  flex-direction: column;
+}
+
+.Capas-CheckboxContainer{
+  display: flex;
 }

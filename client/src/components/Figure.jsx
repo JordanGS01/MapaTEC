@@ -1,11 +1,14 @@
 
 
 
-export const Figure = ({ data, fill }) => {
+export const Figure = ({ data, fill, active }) => {
+
+  if(!active){return <></>}
+
   return (
     data.map( (svgPath) => {
         return(
-            <g>
+            <g key={svgPath.svg}>
                 <title>{svgPath.titulo}</title>
                 <path 
                     d={svgPath.svg}
