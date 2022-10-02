@@ -21,3 +21,49 @@
 .Capas-CheckboxContainer{
   display: flex;
 }
+
+.EdificioValido:hover{
+  cursor: pointer;
+  fill: yellow;
+}
+
+.BotonRegresar{
+  height: 20px;
+}
+
+/*ESTILOS PARA LOS CHECKBOX DE LAS CAPAS*/
+.CapaEdificios{
+  width: 10px;
+  height: 10px;
+  border: solid 1px;
+  background-color: lightblue;
+  margin: 4px 0px 0px 4px;
+  border-radius: 3px;
+}
+
+.CapaZonasVerdes{
+  width: 10px;
+  height: 10px;
+  border: solid 1px;
+  background-color: green;
+  margin: 4px 0px 0px 4px;
+  border-radius: 3px;
+}
+
+.CapaAceras{
+  width: 10px;
+  height: 10px;
+  border: solid 1px;
+  background-color: grey;
+  margin: 4px 0px 0px 4px;
+  border-radius: 3px;
+}
+
+.CapaVialidad{
+  width: 10px;
+  height: 10px;
+  border: solid 1px;
+  background-color: black;
+  margin: 4px 0px 0px 4px;
+  border-radius: 3px;
+}

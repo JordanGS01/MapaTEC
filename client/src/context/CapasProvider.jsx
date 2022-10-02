@@ -9,7 +9,10 @@ export const CapasProvider = ({ children }) => {
         zonas_verdes: true,
         aceras: true,
         vialidad: true
-    })
+    });
+
+    const [chosedId, setChosedId] = useState(null);
+    const [zoomActive, setZoomActive] = useState(false);
 
     const onCheckboxChange = ({ target }) => {
         //Se extrae nombre de la capa
@@ -26,7 +29,14 @@ export const CapasProvider = ({ children }) => {
     }
 
   return (
-    <CapasContext.Provider value={{ capas, onCheckboxChange }}>
+    <CapasContext.Provider value={{ 
+        capas, 
+        onCheckboxChange, 
+        chosedId, 
+        setChosedId,
+        zoomActive,
+        setZoomActive
+    }}>
         { children }
     </CapasContext.Provider>
   )

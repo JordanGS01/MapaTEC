@@ -23,6 +23,8 @@ app.get('/aceras', (req, res) => {
     client.query(q, (err, result) => {
         if(!err){
             res.send(result.rows);
+        }else{
+            console.log(err);
         }
     });
     client.end;
@@ -36,6 +38,8 @@ app.get('/zonas_verdes', (req, res) => {
     client.query(q, (err, result) => {
         if(!err){
             res.send(result.rows);
+        }else{
+            console.log(err);
         }
     });
     client.end;
@@ -49,6 +53,8 @@ app.get('/vialidad', (req, res) => {
     client.query(q, (err, result) => {
         if(!err){
             res.send(result.rows);
+        }else{
+            console.log(err);
         }
     });
     client.end;
@@ -62,9 +68,80 @@ app.get('/edificios', (req, res) => {
     client.query(q, (err, result) => {
         if(!err){
             res.send(result.rows);
+        }else{
+            console.log(err);
         }
     });
     client.end;
 
 })
 
+app.get('/zona_segura/:id', (req, res) => {
+    const { id } = req.params;
+
+    const q = `SELECT id, id_edificio, ST_AsSVG(geom) AS svg FROM tec.zonas_seguras WHERE id_edificio=${id}`;
+
+    client.query(q, (err, result) => {
+        if(!err){
+            res.send(result.rows);
+        }else{
+            console.log(err);
+        }
+    });
+    client.end;
+
+})
+
+app.get('/edificio_zoom/:id', (req, res) => {
+    const { id } = req.params;
+
+    const q = `SELECT id, ST_AsSVG(geom) as svg, nombre as titulo, niveles FROM tec.edificios WHERE id=${id}`;
+
+    client.query(q, (err, result) => {
+        if(!err){
+            res.send(result.rows);
+        }else{
+            console.log(err);
+        }
+    });
+    client.end;
+
+})
+
+app.get('/dimensiones/:id', (req, res) => {
+    const { id } = req.params;
+
+    const q = `SELECT  ST_Xmin(bb) AS xmin,
+                    ST_Ymax(bb)*-1 AS ymax,
+                    (ST_Xmax(bb) - ST_Xmin(bb))*2 AS ancho,
+                    (ST_Ymax(bb) - ST_Ymin(bb))*2 AS alto
+                FROM (SELECT ST_Extent(ST_Union(e.geom,zs.geom)) AS bb FROM tec.edificios AS e,
+                    (SELECT id_edificio,geom FROM tec.zonas_seguras) AS zs
+                    WHERE e.id=${id} and zs.id_edificio=${id}) AS extent`;
+
+    client.query(q, (err, result) => {
+        if(!err){
+            res.send(result.rows);
+        }else{
+            console.log(err);
+        }
+    });
+    client.end;
+
+})
+
+app.get('/ruta_evacuacion/:id', (req, res) => {
+    const { id } = req.params;
+
+    const q = `SELECT id_edificio AS id, ST_AsSVG(geom) AS svg FROM tec.rutas_evacuacion WHERE id_edificio=${id}`;
+
+    client.query(q, (err, result) => {
+        if(!err){
+            res.send(result.rows);
+        }else{
+            console.log(err);
+        }
+    });
+    client.end;
+
+})

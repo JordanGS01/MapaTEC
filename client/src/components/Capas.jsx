@@ -25,6 +25,7 @@ export const Capas = () => {
                     checked = { edificios }
                 />
                 <label htmlFor="edificios">Edificios</label>
+                <div className="CapaEdificios"></div>
             </section>
             
             <section className="Capas-CheckboxContainer">
@@ -37,6 +38,7 @@ export const Capas = () => {
                     checked = { zonas_verdes }
                 />
                 <label htmlFor="zonas_verdes">Zonas Verdes</label>
+                <div className="CapaZonasVerdes"></div>
             </section>
             
             <section className="Capas-CheckboxContainer">
@@ -49,6 +51,7 @@ export const Capas = () => {
                     checked={ aceras }
                 />
                 <label htmlFor="aceras">Aceras</label>
+                <div className="CapaAceras"></div>
             </section>
 
             <section className="Capas-CheckboxContainer">
@@ -61,6 +64,7 @@ export const Capas = () => {
                     checked = { vialidad }
                 />
                 <label htmlFor="vialidad">Vialidad</label>
+                <div className="CapaVialidad"></div>
             </section>
         </div>
     )
